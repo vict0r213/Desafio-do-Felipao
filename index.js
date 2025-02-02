@@ -1,15 +1,33 @@
-let heroi = [ "Superman" , "Batman" , "Lanterna verde" , "Arqueiro"]
-let XpHeroi = [5500 , 1500 , 800 , 4000]
-let ClassificaçãoHeroi = ""
+let herois = ["Wolverine" ,"Capitão America" , "Hulk", "Thor", "Homem Aranha" , "flash" , "Homem de Ferro"]
+let vitorias = [20, 35 , 40 , 70 , 95 , 100 ,15]
+let derrotas = [5 , 10 , 15 , 18 , 22 , 10 , 6 ]
 
-for(let i = 0 ; i < heroi.length; i++) { 
-if (XpHeroi[i] < 1000){
-ClassificaçãoHeroi = "Ferro"
-}else if ( XpHeroi[i] >= 1001 && XpHeroi[i] <= 2000 ) {
-  ClassificaçãoHeroi = "Bronze"
-}else if ( XpHeroi[i] >= 2001 && XpHeroi[i] <= 5000 ) {
-  ClassificaçãoHeroi = "Prata"
-}else if ( XpHeroi[i] >= 5001 && XpHeroi[i] <= 7000 ) {
-  ClassificaçãoHeroi = "Ouro"
-}console.log( "O Herói " + heroi[i] + " está no nível de " +  ClassificaçãoHeroi )
-} 
+function SaldoRankeada (vitorias , derrotas , herois) {
+        let resultados = []
+for (let i = 0 ; i < vitorias.length ; i++) {
+        let SaldoVitoria = vitorias[i] - derrotas[i]
+        let NivelRankeada =""
+
+if (vitorias[i] < 10){
+        NivelRankeada = "Ferro"
+}else if (vitorias[i] >= 11 && vitorias[i]<=20) {
+        NivelRankeada = "Bronze"
+}else if (vitorias[i] >= 21 && vitorias[i]<=50) {
+        NivelRankeada = "Prata" 
+}else if (vitorias[i] >= 51 && vitorias[i]<=80) {
+        NivelRankeada = "Ouro"
+}else if (vitorias[i] >= 81 && vitorias[i]<=90) {
+        NivelRankeada = "Diamante"
+}else if (vitorias[i] >= 91 && vitorias[i]<=100) {
+        NivelRankeada = "lendário"
+
+    }      resultados.push({heroi:herois[i] ,
+               SaldoVitoria:SaldoVitoria , 
+               NivelRankeada:NivelRankeada}) 
+  }
+        return resultados
+}let resultados = SaldoRankeada (vitorias , derrotas , herois)
+
+for(let resultado of resultados) {
+console.log(`O herói ${resultado.heroi} tem saldo de ${resultado.SaldoVitoria} vitórias e está no nível de ${resultado.NivelRankeada}`) 
+}
